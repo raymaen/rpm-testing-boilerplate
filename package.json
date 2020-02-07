@@ -1,0 +1,22 @@
+{
+  "name": "final-bp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run build && cd server && npm run serve",
+    "dev": "concurrently \"npm run server:dev\" \"npm run client\"",
+    "server": "cd server && npm run start",
+    "server:dev": "cd server && npm run start:dev",
+    "client": "cd client && npm start",
+    "build": "npm run buildServer && npm run buildClient",
+    "buildServer": "cd server && npm run build",
+    "buildClient": "cd client && npm run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^5.0.2"
+  }
+}

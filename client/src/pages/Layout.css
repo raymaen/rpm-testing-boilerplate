@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,600,700&display=swap');
+
+body {
+  font-family: 'Nunito, sans-serif';
+}
+div[contenteditable='true'] {
+  padding: 5px;
+  word-wrap: break-word;
+}
+
+div[contenteditable='true']:focus {
+  outline: 0px solid transparent;
+}
+div[contenteditable='true']#item {
+  margin-right: 0px;
+  font-size: 16px;
+}
+
+div[contenteditable='true']#item:focus {
+  border-top: 1px solid #aaa;
+  border-bottom: 1px solid #aaa;
+}
+
+input:focus {
+  outline: none;
+}
