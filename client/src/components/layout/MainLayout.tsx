@@ -17,6 +17,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/MenuOutlined';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeftOutlined';
 import ChevronRightIcon from '@material-ui/icons/ChevronRightOutlined';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -24,6 +25,7 @@ import FilterHdrIcon from '@material-ui/icons/FilterHdrOutlined';
 import Notifications from './Notifications';
 import { AppState } from '../../store';
 import { connect } from 'react-redux';
+import auth0Client from '../../util/auth0Client';
 
 const drawerWidth = 240;
 
@@ -101,6 +103,11 @@ const MainLayout: React.FC<Props> = ({ children, history, color }) => {
 
   const redirect = (url: string) => history.push(url);
 
+  const signOut = () => {
+    auth0Client.signOut();
+    history.replace('/');
+  };
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -158,6 +165,13 @@ const MainLayout: React.FC<Props> = ({ children, history, color }) => {
               <FilterHdrIcon color="secondary" fontSize="small" />
             </ListItemIcon>
             <ListItemText primary="RPM Planner" />
+          </ListItem>
+
+          <ListItem button onClick={signOut}>
+            <ListItemIcon>
+              <ExitToAppIcon color="secondary" fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary="Sign Out" />
           </ListItem>
         </List>
       </Drawer>
