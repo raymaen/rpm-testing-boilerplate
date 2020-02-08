@@ -105,7 +105,7 @@ const MainLayout: React.FC<Props> = ({ children, history, color }) => {
 
   const signOut = () => {
     auth0Client.signOut();
-    history.replace('/');
+    history.push('/');
   };
 
   const handleDrawerOpen = () => {
@@ -136,7 +136,7 @@ const MainLayout: React.FC<Props> = ({ children, history, color }) => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            uLegend
+            RPM
           </Typography>
         </Toolbar>
       </AppBar>

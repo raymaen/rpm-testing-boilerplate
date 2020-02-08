@@ -13,7 +13,7 @@ const SecurityWrapper: React.FC<Props> = ({ children, location }) => {
   const forceUpdate = useForceUpdate();
 
   const checkSession = async () => {
-    if (location.pathname === '/callback') {
+    if (location.pathname === '/callback' || auth0Client.isAuthenticated()) {
       setCheckingSession(false);
       return;
     }
@@ -35,6 +35,7 @@ const SecurityWrapper: React.FC<Props> = ({ children, location }) => {
   }
 
   if (!auth0Client.isAuthenticated()) {
+    alert('as');
     auth0Client.signIn();
     return null;
   }

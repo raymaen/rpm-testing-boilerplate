@@ -6,13 +6,15 @@ import FullScreenLoader from '../common/FullScreenLoader';
 interface Props extends RouteComponentProps {}
 
 const AuthCallback: React.FC<Props> = ({ history }) => {
-  const starthandleAuthentication = async () => {
-    await auth0Client.handleAuthentication();
-    history.replace('/');
+  const handleAuthentication = async () => {
+    if (!auth0Client.isAuthenticated()) {
+      await auth0Client.handleAuthentication();
+    }
+    history.push('/');
   };
 
   useEffect(() => {
-    starthandleAuthentication();
+    handleAuthentication();
   }, []);
 
   return <FullScreenLoader text="Loading user data..." />;
