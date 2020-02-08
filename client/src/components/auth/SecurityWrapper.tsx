@@ -9,7 +9,7 @@ interface Props extends RouteComponentProps {
 }
 
 const SecurityWrapper: React.FC<Props> = ({ children, location }) => {
-  const [checkingSession, setCheckingSession] = useState(false);
+  const [checkingSession, setCheckingSession] = useState(true);
   const forceUpdate = useForceUpdate();
 
   const checkSession = async () => {
@@ -22,7 +22,6 @@ const SecurityWrapper: React.FC<Props> = ({ children, location }) => {
       forceUpdate();
     } catch (err) {
       if (err.error !== 'login_required') console.log(err.error);
-      auth0Client.signIn();
     }
     setCheckingSession(false);
   };
@@ -36,7 +35,7 @@ const SecurityWrapper: React.FC<Props> = ({ children, location }) => {
   }
 
   if (!auth0Client.isAuthenticated()) {
-    checkSession();
+    auth0Client.signIn();
     return null;
   }
 

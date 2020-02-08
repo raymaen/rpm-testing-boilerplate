@@ -29,14 +29,21 @@ class Auth {
   }
 
   isAuthenticated() {
+    alert('isAuthenticated');
+
+    alert(this.expiresAt);
+
     return new Date().getTime() < this.expiresAt;
   }
 
   signIn() {
+    alert('signIn');
+
     this.auth0.authorize();
   }
 
   handleAuthentication() {
+    alert('handleAuthentication');
     return new Promise((resolve, reject) => {
       this.auth0.parseHash((err, authResult) => {
         if (err) return reject(err);
@@ -50,6 +57,8 @@ class Auth {
   }
 
   setSession(authResult) {
+    alert('authResult');
+
     this.idToken = authResult.idToken;
     this.profile = authResult.idTokenPayload;
     // set the time that the id token will expire at
@@ -64,6 +73,8 @@ class Auth {
   }
 
   silentAuth() {
+    alert('silentAuth');
+
     return new Promise((resolve, reject) => {
       this.auth0.checkSession({}, (err, authResult) => {
         if (err) return reject(err);

@@ -13,7 +13,7 @@ const AuthCallback: React.FC<Props> = ({ history }) => {
 
   useEffect(() => {
     starthandleAuthentication();
-  }, [starthandleAuthentication]);
+  }, []);
 
   return <FullScreenLoader text="Loading user data..." />;
 };
