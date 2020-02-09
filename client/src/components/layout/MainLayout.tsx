@@ -25,7 +25,7 @@ import FilterHdrIcon from '@material-ui/icons/FilterHdrOutlined';
 import Notifications from './Notifications';
 import { AppState } from '../../store';
 import { connect } from 'react-redux';
-import auth0Client from '../../util/auth0Client';
+import { useAuth0 } from '../auth/auth0-context';
 
 const drawerWidth = 240;
 
@@ -100,13 +100,9 @@ const MainLayout: React.FC<Props> = ({ children, history, color }) => {
   const classes = useStyles({});
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const { logout } = useAuth0();
 
   const redirect = (url: string) => history.push(url);
-
-  const signOut = () => {
-    auth0Client.signOut();
-    history.push('/');
-  };
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -167,7 +163,10 @@ const MainLayout: React.FC<Props> = ({ children, history, color }) => {
             <ListItemText primary="RPM Planner" />
           </ListItem>
 
-          <ListItem button onClick={signOut}>
+          <ListItem
+            button
+            onClick={() => logout({ returnTo: window.location.origin })}
+          >
             <ListItemIcon>
               <ExitToAppIcon color="secondary" fontSize="small" />
             </ListItemIcon>

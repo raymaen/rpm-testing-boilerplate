@@ -5,6 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { SharedModule } from './shared/shared.module';
 import { GameModule } from './games/game.module';
 import { MailerModule } from './mailer/mailer.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { MailerModule } from './mailer/mailer.module';
       inject: [ConfigurationService],
     }),
     MailerModule,
+    UserModule,
   ],
 })
 export class AppModule {}
