@@ -24,6 +24,8 @@ const App: React.FC = () => {
     return <Login />;
   }
 
+  console.log(user);
+
   return (
     <Provider store={store}>
       <MuiThemeProvider theme={theme}>
