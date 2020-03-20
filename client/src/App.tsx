@@ -7,14 +7,15 @@ import Routes from './Routes';
 import MainLayout from './components/layout/MainLayout';
 import theme from './util/theme';
 import './pages/Layout.css';
-import { useAuth0 } from './components/auth/auth0-context';
+import { useAuth0, useHttp } from './components/auth/auth0-context';
 import FullScreenLoader from './components/common/FullScreenLoader';
 import Login from './pages/Login';
 
 export const store = configureStore();
 
 const App: React.FC = () => {
-  const { isLoading, user, loginWithRedirect } = useAuth0();
+  const { isLoading, user } = useAuth0();
+  const { requestJSON } = useHttp();
 
   if (isLoading) {
     return <FullScreenLoader />;
@@ -23,8 +24,6 @@ const App: React.FC = () => {
   if (!isLoading && !user) {
     return <Login />;
   }
-
-  console.log(user);
 
   return (
     <Provider store={store}>

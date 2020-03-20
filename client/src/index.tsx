@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { Auth0Provider } from './components/auth/auth0-context';
+import { Auth0Provider as AppAuthProvider } from './components/auth/auth0-context';
 
 ReactDOM.render(
-  <Auth0Provider>
+  <AppAuthProvider>
     <App />
-  </Auth0Provider>,
+  </AppAuthProvider>,
   document.getElementById('root')
 );

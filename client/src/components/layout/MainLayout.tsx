@@ -22,6 +22,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import FilterHdrIcon from '@material-ui/icons/FilterHdrOutlined';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import Notifications from './Notifications';
 import { AppState } from '../../store';
 import { connect } from 'react-redux';
@@ -94,9 +95,10 @@ const useStyles = makeStyles((theme: Theme) =>
 interface Props extends RouteComponentProps {
   children: JSX.Element;
   color: string;
+  loading: boolean;
 }
 
-const MainLayout: React.FC<Props> = ({ children, history, color }) => {
+const MainLayout: React.FC<Props> = ({ children, history, color, loading }) => {
   const classes = useStyles({});
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -135,6 +137,7 @@ const MainLayout: React.FC<Props> = ({ children, history, color }) => {
             RPM
           </Typography>
         </Toolbar>
+        <LinearProgress hidden={!loading} />
       </AppBar>
       <Drawer
         className={classes.drawer}
@@ -192,7 +195,8 @@ const mapStateToProps = (state: AppState) => ({
   color: state.globalSettings.selectedRpm
     ? state.rpm.filter(rpm => rpm.id === state.globalSettings.selectedRpm)[0]
         .color
-    : '#fff'
+    : '#fff',
+  loading: state.globalSettings.loading
 });
 
 export default connect(mapStateToProps)(withRouter(MainLayout));

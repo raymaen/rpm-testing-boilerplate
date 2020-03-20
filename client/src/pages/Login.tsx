@@ -1,10 +1,10 @@
 import React from 'react';
-import { useAuth0 } from '../components/auth/auth0-context';
 import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
 import CenteredLayout from '../components/common/CenteredLayout';
 import { makeStyles, Theme, createStyles } from '@material-ui/core';
+import { useAuth0 } from '../components/auth/auth0-context';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
